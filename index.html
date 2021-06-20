@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>气泡球首页</title>
+  <title>烟雨斜阳的博客网站</title>
   <style>
     body {
       margin: 0;
@@ -12,6 +12,54 @@
     .bubble {
       background-color: black;
       display: block;
+    }
+
+    .content {
+      width: 400px;
+      height: 400px;
+      margin: -180px 0 0 -200px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+    }
+
+    .content-logo {
+      width: 200px;
+      height: 200px;
+      border-radius: 100%;
+      margin: -180px 0 0 -100px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+    }
+
+    .nav {
+      width: 300px;
+      height: 50px;
+      margin: 50px 0 0 -120px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+    }
+
+    .introduce {
+      width: 220px;
+      height: 50px;
+      margin: 120px 0 0 -90px;
+      position: relative;
+      left: 50%;
+      top: 50%;
+      color: white;
+    }
+
+    .link {
+      font-size: 28px;
+      margin: 0px 0px 0px 30px;
+      color: blue;
+    }
+
+    .link:hover {
+      color: darkred;
     }
   </style>
 </head>
@@ -29,7 +77,7 @@
       canvas.width = w
       canvas.height = h
       var Bubbles = []//存放气泡球对象
-      var bubbleCount = 200
+      var bubbleCount = 100
 
       window.onresize = () => {//根据浏览器宽高设置canvas的宽高
         w = window.innerWidth
@@ -44,7 +92,7 @@
         Bubbles[len] = new Bubble(event.pageX, event.pageY)
       }, false)
 
-      for (let i = 0; i < bubbleCount; i++) {//生成气泡球200个
+      for (let i = 0; i < bubbleCount; i++) {//生成气泡球100个
         Bubbles[i] = new Bubble()
       }
 
@@ -58,9 +106,14 @@
       }, 1000 / 30)//1秒30帧 1000 / 30
     }
   </script>
-  <div style="width:200px; height:200px; margin: -100px 0 0 -100px; position: absolute; left: 50%;top: 50%;">
-    <img class="home-logo" src="https://avatars.githubusercontent.com/u/9964032?v=4" alt="yanyuxieyang logo"
-      style="width:200px; height:200px; border-radius:100%">
+  <div class="content">
+    <img class="content-logo" src="./images/logo.jpg" alt="yanyuxieyang logo">
+    <div class="nav">
+      <a target="_blank" rel="noopener noreferrer" class="link" href="https://github.com/yanyuxieyang">github</a><a
+        target="_blank" rel="noopener noreferrer" class="link" href="https://blog.csdn.net/dong123ohyes">blog</a>
+    </div>
+    <div class="introduce">
+      时光正好，未来可期，加油！ </div>
   </div>
 </body>
 
