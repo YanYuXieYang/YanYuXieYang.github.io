@@ -1,28 +1,63 @@
-<!--
- * @Author: your name
- * @Date: 2021-03-03 20:27:43
- * @LastEditTime: 2021-03-03 20:34:42
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \WebProject\dont_step_on_the_white_block\index.html
--->
-<!Doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="UTF-8">
-  <title>别踩白块</title>
-  <link type="text/css" rel="stylesheet" href="./index.css">
+  <title>动态气泡球</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .bubble {
+      background-color: black;
+      display: block;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="wrapper">
-    <div class="title">Game Start</div>
-    <div class="main"></div>
-    <div class="Author">作者：烟雨斜阳</div>
-  </div>
+  <canvas class="bubble"></canvas>
+  <script src="./bubble.js"></script>
+  <script>
+    {//业务代码
+      var canvas = document.getElementsByClassName('bubble')[0]
+      var conT = canvas.getContext('2d')//2d绘图环境
+      //获取浏览器宽高
+      var w = window.innerWidth
+      var h = window.innerHeight
+      canvas.width = w
+      canvas.height = h
+      var Bubbles = []//存放气泡球对象
+      var bubbleCount = 200
+
+      window.onresize = () => {//根据浏览器宽高设置canvas的宽高
+        w = window.innerWidth
+        h = window.innerHeight
+        canvas.width = w
+        canvas.height = h
+      }
+
+      //鼠标轨迹跟随
+      canvas.addEventListener("mousemove", (event) => {
+        var len = Bubbles.length
+        Bubbles[len] = new Bubble(event.pageX, event.pageY)
+      }, false)
+
+      for (let i = 0; i < bubbleCount; i++) {//生成气泡球200个
+        Bubbles[i] = new Bubble()
+      }
+
+      window.setInterval(function () {
+        conT.clearRect(0, 0, w, h)//清空矩形区域,视觉上无法感知到。清除旧球
+        for (var item of Bubbles) {
+          item.move()
+          item.collisionRebound()
+          item.draw()
+        }
+      }, 1000 / 30)//1秒30帧 1000 / 30
+    }
+  </script>
 </body>
-<script type="text/javascript" src="./lib/jquery-3.2.1.js"></script>
-<script type="text/javascript" src="./index.js"></script>
 
 </html>
